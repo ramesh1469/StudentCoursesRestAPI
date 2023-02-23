@@ -1,0 +1,19 @@
+---
+trigger: 
+  - main
+
+pool: Pipeline
+
+stages:
+  - stage: 'Docker image build'
+    jobs:
+      - job: 'create container'
+        steps:
+          - task: Docker@2
+            inputs:
+              containerRegistry: Python
+              repository: src
+              command: 'buildAndPush'
+              Dockerfile: '**/Dockerfile'
+              buildContext: '**'
+              tags: '$(Build.BuildId)'
