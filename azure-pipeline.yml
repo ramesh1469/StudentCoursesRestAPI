@@ -5,7 +5,7 @@ trigger:
 pool: Pipeline
 
 stages:
-  - stage: 'Docker image build'
+  - stage: 'imagebuild'
     jobs:
       - job: 'create container'
         steps:
