@@ -1,0 +1,35 @@
+---
+apiVersion: apps/v1
+Kind: Deployment
+metadata: 
+  name: src
+  labels: 
+    app: Python
+    version: latest
+spec:
+  minReadySeconds: 5
+  replicas: 1
+  selector:
+    matchLabels:
+      app: Python
+      version: latest
+  strategy:
+    type: "RollingUpdate"
+    rollingUpdate: 
+      maxSurge: 25%
+      maxUnavailable: 25%
+  template: 
+    metadata:
+      name: src
+      labels: 
+        app: Python
+        version: latest
+    spec: 
+      containers:  
+        name: src
+        image: ruchi.azurecr.io/src:47
+        ports:
+          containerPort: 8080
+          protocol: "TCP"
+      
+      

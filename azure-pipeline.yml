@@ -17,3 +17,16 @@ stages:
               Dockerfile: '**/Dockerfile'
               buildContext: '**'
               tags: '$(Build.BuildId)'
+  - stage: 'k8s_cluster'
+    jobs:
+      - job: 'containerdeploy'
+        steps: 
+          - task: Kubernetes@1
+            inputs: 
+              connectionType: 'Kubernetes Service Connection'
+              kubernetesServiceEndpoint: k8s
+              useClusterAdmin: false
+              command: 'apply'
+              useConfigurationFile: true
+              configurationType: 'configuration'
+              configuration: ./k8s.yml
