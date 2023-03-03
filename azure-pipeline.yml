@@ -2,14 +2,15 @@
 trigger: 
   - master
 
+pool:
+          name: Pipeline
+          demands: 
+            - Agent.Name -equals RUCHI
+
 stages:
   - stage: 'imagebuild_1'
     jobs:
       - job: 'createcontainer'
-        pool:
-          name: Pipeline
-          demands: 
-            - Agent.Name -equals King
         steps:
           - task: Docker@2
             inputs:
