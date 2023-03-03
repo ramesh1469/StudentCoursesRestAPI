@@ -29,8 +29,9 @@ stages:
         steps: 
           - task: Kubernetes@1
             inputs: 
-              connectionType: 'Kubernetes Service Connection'
-              kubernetesServiceEndpoint: k8s
+              connectionType: 'Azure Resource Manager'
+              azureSubscriptionEndpoint: k8s
+              azureResourceGroup: ruchiaks
               useClusterAdmin: false
               command: 'apply'
               useConfigurationFile: true
